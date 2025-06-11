@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rentee Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome, {{ user.username }} (Rentee)</h1>
+
+    <h2>Your Bookings</h2>
+    {% if bookings %}
+        <ul>
+            {% for booking in bookings %}
+                <li>{{ booking.listing.title }}: {{ booking.start_date }} to {{ booking.end_date }} - Status: {{ booking.status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no bookings.</p>
+    {% endif %}
+
+    <h2>Your Inquiries</h2>
+    {% if inquiries %}
+        <ul>
+            {% for inquiry in inquiries %}
+                <li>To {{ inquiry.listing.title }}: "{{ inquiry.message }}" (Sent on {{ inquiry.date_sent }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have made no inquiries.</p>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ listing.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>{{ listing.title }}</h1>
+    {% if listing.image %}
+        <img src="{{ listing.image.url }}" alt="{{ listing.title }}" style="max-width: 400px;">
+    {% endif %}
+    <p><strong>Description:</strong> {{ listing.description }}</p>
+    <p><strong>Location:</strong> {{ listing.location }}</p>
+    <p><strong>Price:</strong> KES {{ listing.price }}</p>
+    <p><strong>Contact:</strong> {{ listing.contact_email }}</p>
+</body>
+</html>
