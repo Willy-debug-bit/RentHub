@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Platform</title> 
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'listings:listings_page' %}">Listings</a> |
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:dashboard' %}">Dashboard</a> |
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> |
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    <hr>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    <!-- Page content will go here -->
+    {% endblock %}
+</body>
+</html>
